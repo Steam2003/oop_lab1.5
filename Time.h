@@ -16,12 +16,12 @@ public:
 	void SecondsConverter();
 	void addSeconds();
 	void addMinutes();
-	void SetHours(int value) { time.hours = abs(value); HoursConverter(); }
-	void SetMinutes(int value) { time.minutes = abs(value); MinutesConverter(); }
-	void SetSeconds(int value) { time.seconds = abs(value); SecondsConverter(); }
-	int GetHours() const { return time.hours; }
-	int GetMinutes() const { return time.minutes; }
-	int GetSeconds() const { return time.seconds; }
+	void SetHours(int value);
+	void SetMinutes(int value);
+	void SetSeconds(int value);
+	int GetHours() const { return time.GetHours(); }
+	int GetMinutes() const { return time.GetMinutes(); }
+	int GetSeconds() const { return time.GetSeconds(); }
 	void Stabilizer();
 	string toString() const;
 	

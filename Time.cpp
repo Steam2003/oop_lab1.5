@@ -7,42 +7,56 @@ void Time::Init(Triad value)
 }
 void Time::incHours() 
 { 
-	//time.incHours(this);
-	++time.hours; 
+	time.SetHours(time.GetHours() + 1);
 	HoursConverter();
 }
 void Time::incMinutes()
 {
-	++time.minutes;
+	time.SetMinutes(time.GetMinutes() + 1);
 	MinutesConverter();
 }
 void Time::incSeconds()
 {
-	++time.seconds;
+	time.SetSeconds(time.GetSeconds() + 1);
 	SecondsConverter();
 }
 void Time::Display() const
 {
-	cout << time.hours << " годин " << time.minutes << " хвилин " << time.seconds << " секунд " << endl;
+	cout << time.GetHours() << " годин " << time.GetMinutes() << " хвилин " << time.GetSeconds() << " секунд " << endl;
+}
+void Time::SetHours(int value)
+{
+	time.SetHours(time.GetHours() + value);
+	HoursConverter();
 }
 void Time::HoursConverter()
 {
-	if (time.hours >= 24)
-		time.hours = time.hours % 24;
+	if (time.GetHours() >= 24)
+		time.SetHours(time.GetHours() % 24);
+}
+void Time::SetMinutes(int value)
+{
+	time.SetMinutes(time.GetMinutes() + value);
+	MinutesConverter();
 }
 void Time::MinutesConverter()
 {
-	while(time.minutes >= 60)
+	while (time.GetMinutes() >= 60)
 	{
-		time.minutes = time.minutes - 60;
+		time.SetMinutes(time.GetMinutes() - 60);
 		incHours();
 	}
 }
+void Time::SetSeconds(int value)
+{
+	time.SetSeconds(time.GetSeconds() + value);
+	SecondsConverter();
+}
 void Time::SecondsConverter()
 {
-	while (time.seconds >= 60)
+	while (time.GetSeconds() >= 60)
 	{
-		time.seconds = time.seconds - 60;
+		time.SetSeconds(time.GetSeconds() - 60);
 		incMinutes();
 	}
 }
@@ -50,14 +64,14 @@ void Time::addSeconds()
 {
 	int value;
 	cout << "¬вед≥ть ск≥льки додати секунд: "; cin >> value;
-	time.seconds += value;
+	time.SetSeconds(time.GetSeconds() + value);
 	Stabilizer();
 }
 void Time::addMinutes()
 {
 	int value;
 	cout << "¬вед≥ть ск≥льки додати хвилин: "; cin >> value;
-	time.minutes += value;
+	time.SetMinutes(time.GetMinutes() + value);
 	Stabilizer();
 }
 void Time::Read()
@@ -73,7 +87,7 @@ void Time::Read()
 string Time::toString() const
 {
 	stringstream sout;
-	sout << "„исло 1: " << time.hours << ", число 2: " << time.minutes << ", число 3: " << time.seconds << endl;
+	sout << "„исло 1: " << time.GetHours() << ", число 2: " << time.GetMinutes() << ", число 3: " << time.GetSeconds() << endl;
 	return sout.str();
 }
 void Time::Stabilizer()

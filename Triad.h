@@ -6,7 +6,6 @@
 using namespace std;
 class Triad
 {
-	friend class Time;
 private:
 	int hours;
 	int minutes;
